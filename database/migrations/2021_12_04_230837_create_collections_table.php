@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateObjectsTable extends Migration
+class CreateCollectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,13 @@ class CreateObjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('objects', function (Blueprint $table) {
+        Schema::create('collections', function (Blueprint $table) {
             $table->id();
-            $table->string('unique_name')->unique();
-            $table->unsignedBigInteger('instrections_id');
-            $table->float('sell_price');
-            $table->float('buy_price');
+            $table->unsignedBigInteger('region_id');
+            $table->unsignedBigInteger('collector_id');
+            $table->unsignedBigInteger('car_id');
+            $table->date('collection_date');
+            $table->time('end_time');
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ class CreateObjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('objects');
+        Schema::dropIfExists('collections');
     }
 }
